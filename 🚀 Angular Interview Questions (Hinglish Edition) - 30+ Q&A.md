@@ -244,13 +244,6 @@ Dono hi decorators hain jo child elements ko access karne ke liye use hote hain,
 
 ---
 
-
-# Angular Interview Questions (Hindi/English)
-
-This document converts the provided list of Angular interview questions and answers (in a mix of English and Hindi) into a structured Markdown format, complete with examples where applicable.
-
----
-
 ## 1. Why Angular? / Angular kyun use karein?
 
 Angular is a **powerful framework** that helps in building large-scale web applications. Its main advantage is that it is best suited for creating **Single Page Applications (SPAs)** and it has the backing of Google.
