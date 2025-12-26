@@ -244,6 +244,195 @@ Dono hi decorators hain jo child elements ko access karne ke liye use hote hain,
 
 ---
 
+
+# Angular Interview Questions (Hindi/English)
+
+This document converts the provided list of Angular interview questions and answers (in a mix of English and Hindi) into a structured Markdown format, complete with examples where applicable.
+
+---
+
+## 1. Why Angular? / Angular kyun use karein?
+
+Angular is a **powerful framework** that helps in building large-scale web applications. Its main advantage is that it is best suited for creating **Single Page Applications (SPAs)** and it has the backing of Google.
+
+## 2. What is Angular? / Angular kya hai?
+
+Angular is a **TypeScript-based open-source web application framework**. It is used to create dynamic and interactive web pages.
+
+## 3. Key features of Angular? / Iske khaas features kya hain?
+
+*   **Component-based architecture**: Divides the code into small, manageable parts.
+*   **Two-way Data Binding**: Keeps the data and the UI in sync automatically.
+*   **Dependency Injection (DI)**: Allows services to be easily used and managed.
+*   **Directives**: Extends the capabilities of HTML.
+
+## 4. What is a Component? / Component kya hota hai?
+
+A Component is the **most basic building block** of an Angular application. Every component consists of three main parts:
+
+1.  **HTML** (For the design/template)
+2.  **CSS** (For styling)
+3.  **TypeScript** (For the logic)
+
+## 5. What are Directives? / Directives kya hain?
+
+Directives are **instructions** that change the behavior or appearance of HTML elements.
+
+**Example:**
+
+*   `*ngIf`: A **Structural Directive** used to conditionally add or remove an element from the DOM.
+*   `*ngFor`: A **Structural Directive** used to repeat an element for each item in a list.
+
+```html
+<!-- *ngIf Example -->
+<p *ngIf="isLoggedIn">Welcome User!</p>
+
+<!-- *ngFor Example -->
+<ul>
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>
+```
+
+## 6. What is Data Binding? / Data Binding kya hai?
+
+Data binding means **sharing data** between the TypeScript (Logic) and the HTML (View).
+
+## 7. Types of Data Binding? / Data binding kitne tarah ki hoti hai?
+
+| Type | Direction | Syntax | Description |
+| :--- | :--- | :--- | :--- |
+| **One-way** | TS to HTML | `{{ }}` or `[ ]` | Data flows from component logic to the view. |
+| **Event Binding** | HTML to TS | `( )` | Data (events) flows from the view to the component logic. |
+| **Two-way** | Both ways | `[(ngModel)]` | Data flows both ways, keeping the model and view synchronized. |
+
+## 8. What is Dependency Injection (DI)? / DI kya hai?
+
+DI is a **design pattern** where a class is provided with objects (dependencies) it needs, rather than creating them itself. It is mostly used for **Services** and helps keep the code clean.
+
+## 9. What are Lifecycle Hooks? / Lifecycle Hooks kya hote hain?
+
+When a component is created and destroyed, Angular calls certain special functions known as "Hooks."
+
+**Examples:**
+
+*   `ngOnInit`: Called once after the component's properties are initialized. **API calls should always be made here.**
+*   `ngOnDestroy`: Called just before the component is destroyed. Used for cleanup (e.g., unsubscribing from Observables).
+
+## 10. How does Routing work? / Routing kaise kaam karti hai?
+
+Routing helps us navigate from one page to another **without refreshing the entire page**. This is achieved using `RouterModule` and the `<router-outlet>` component.
+
+## 11. What is Change Detection? / Change Detection kya hai?
+
+Whenever our data changes, Angular automatically checks and updates the HTML (UI). This process is called **Change Detection**.
+
+## 12. What is RxJS? / RxJS kya hai?
+
+RxJS is a library used for handling **Asynchronous data** (like API calls) using the concept of **Observables**.
+
+## 13. Difference between ngOnInit and Constructor?
+
+| Feature | `constructor` | `ngOnInit` |
+| :--- | :--- | :--- |
+| **Origin** | TypeScript feature | Angular Lifecycle Hook |
+| **Call Time** | Called immediately when the class is instantiated. | Called after the component's properties are set up by Angular. |
+| **Usage** | Only for basic initialization and Dependency Injection. | For complex initialization, fetching data (API calls), and setting up subscriptions. |
+
+## 14. What is AOT Compilation? / AOT kya hai?
+
+AOT stands for **"Ahead-of-Time"** compilation. It compiles the code *before* the browser runs it, which results in a **faster loading** application.
+
+## 15. What is Lazy Loading? / Lazy Loading kya hai?
+
+Lazy loading means loading a feature or module **only when the user clicks on it**. This significantly improves the application's initial startup speed.
+
+## 16. How to optimize performance? / Performance kaise sudharein?
+
+*   Use **Lazy Loading** for modules.
+*   **Unsubscribe** from unnecessary subscriptions in `ngOnDestroy`.
+*   Use **AOT compilation**.
+*   Use the **OnPush** change detection strategy.
+
+## 17. Unit Testing in Angular? / Unit Testing kya hai?
+
+Unit testing means checking every small part (unit) of the code to ensure it is working correctly. Angular uses **Jasmine** and **Karma** tools for this.
+
+## 18. Subjects (Behavior, Replay, Async) kya hain?
+
+These are special types of RxJS Observables that allow for **data multicast** (sending data to multiple subscribers simultaneously).
+
+| Subject Type | Key Feature |
+| :--- | :--- |
+| **Subject** | Only updates with new data after subscription. |
+| **BehaviorSubject** | Remembers the **last value** (requires an initial value). |
+| **ReplaySubject** | Can remember a specified number of **past values**. |
+| **AsyncSubject** | Only emits the **last value** when the task is completed (`complete()` is called). |
+
+## 19. DI Under the Hood? / DI piche kaise kaam karta hai?
+
+Angular creates an **"Injector"** which keeps a record of all services. When a component needs a service, the Injector "injects" that service into the component.
+
+## 20. What are Zones? / Zones kya hain?
+
+**Zone.js** is a library that tells Angular *when* something has changed (like a click or a timer), so Angular can update the UI. Without Zones, manual updates would be required.
+
+## 21. `providedIn: 'root'` vs `'platform'` vs `'any'`?
+
+*   `'root'`: The service will have a single instance (**Singleton**) across the entire application.
+*   `'platform'`: The service will be shared between multiple Angular apps running on the same page.
+*   `'any'`: Every lazy-loaded module will get its own separate copy of the service.
+
+## 22. Lazy Load Benefits and Pitfalls?
+
+*   **Benefit**: Application loads faster initially.
+*   **Pitfall**: If routing is not managed correctly, the user might experience a delay during navigation.
+
+## 23. How does Angular handle SSR? / SSR kya hai?
+
+Angular uses **Angular Universal** for **SSR (Server-Side Rendering)**. This renders the page on the server, which is highly beneficial for **SEO (Search Engine Optimization)**.
+
+## 24. Structural Directives? / Structural Directives kya hain?
+
+These directives change the **structure of the DOM** by adding or removing elements. Examples include `*ngIf` and `*ngFor`. Custom structural directives can also be created.
+
+## 25. Template Driven vs Reactive Forms?
+
+| Feature | Template Driven Forms | Reactive Forms |
+| :--- | :--- | :--- |
+| **Logic Location** | Logic is primarily in the **HTML template**. | Logic is primarily in the **TypeScript component class**. |
+| **Scalability** | Suitable for **small, simple** forms. | Suitable for **large, complex** forms. |
+| **Control** | Less control over validation and data flow. | More powerful and explicit control. |
+
+## 26. What is a Dynamic Component? / Dynamic Component kya hai?
+
+These are components that are generated at **runtime** (when needed) rather than at compile time. They are rendered using `ViewContainerRef`.
+
+## 27. NgModules vs Standalone Components?
+
+Previously, `NgModule` was mandatory in Angular. Now, **Standalone Components** are available. They do not require a module to be used, which makes the code simpler and reduces boilerplate.
+
+## 28. What is TestBed? / TestBed kya hai?
+
+`TestBed` is an Angular testing tool that creates a **"fake" environment** to allow for the testing of components and services in isolation.
+
+## 29. What are Angular Elements? / Angular Elements kya hain?
+
+Angular Elements convert Angular components into **"Custom Elements" (Web Components)**. This allows them to be used in any other framework (like React or plain HTML).
+
+## 30. Memory Leaks aur Prevention? / Memory leak kaise rokein?
+
+A memory leak occurs when we **subscribe to an Observable and forget to unsubscribe** from it.
+
+**Prevention:**
+
+*   Always **unsubscribe** in `ngOnDestroy`.
+*   Use the **`async` pipe** in the HTML template, as it automatically handles subscription and unsubscription.
+
+```html
+<!-- Using the async pipe for automatic unsubscription -->
+<p>{{ data$ | async }}</p>
+```
+
 ## 📚 References (Sandarbh)
 
 *   [Angular Official Documentation](https://angular.io/)
@@ -251,3 +440,4 @@ Dono hi decorators hain jo child elements ko access karne ke liye use hote hain,
 *   [Angular Interview Questions & Answers - GitHub](https://github.com/sudheerj/angular-interview-questions)
 
 **All the best for your interview! 👍**
+
