@@ -1,620 +1,325 @@
-# Angular Interview Questions and Answers (with Examples)
+# 🚀 Angular Interview Questions (Hinglish Edition) - 30+ Q&A
 
-Yeh document Angular ke zaroori concepts ko **Hindi/Hinglish** mein samjhata hai aur har concept ke saath **code examples** bhi deta hai taaki aapki understanding behtar ho sake.
+**👋 Hello Dosto!**
 
----
-
-**1. Angular kya hai?**
-
-**Answer:** Angular ek **open-source front-end framework** hai jo Google ne develop kiya hai. Iska use modern, **single-page applications (SPA)** banane ke liye hota hai jo fast aur responsive hoti hain.
+Yeh repository un sabhi ke liye hai jo **Angular interviews** ki taiyari kar rahe hain. Yahan humne **30 se zyada** sabse zaroori sawalon (questions) ko **Hinglish** (Hindi aur English ka mix) mein jawab ke saath pesh kiya hai. Isse aapko concepts ko samajhne aur interview mein confidently bolne mein madad milegi. Yeh questions **Beginner** se lekar **Advanced** level tak cover karte hain.
 
 ---
 
-**2. Angular ke main features kya hain?**
+## 🌟 Part 1: Basic Concepts (Buniyadi Sawal)
 
-**Answer:** Angular ke kuch khaas features:
+### 1. Angular Kya Hai? (What is Angular?)
 
-*   **Component-based architecture:** App ko chhote-chhote, independent hisson mein baant dena.
-*   **Two-way data binding:** Model (TypeScript) aur View (HTML) ka sync rehna. Jab ek jagah change hota hai, toh doosri jagah automatically update ho jaati hai.
-*   **Dependency Injection (DI):** Code ko modular aur reusable banana. Angular automatically required services component ko provide karta hai.
-*   **Directives:** DOM elements ko extra power aur functionality dena.
-*   **Routing:** Bina poora page reload kiye, app ke different views ke beech navigation.
-*   **Forms aur HTTP support:** Data handling aur backend API calls ke liye built-in modules.
+**Jawab (Answer):**
+**Angular** ek **TypeScript-based** open-source framework hai jise Google ne banaya hai. Iska main kaam **Single Page Applications (SPAs)** banana hai. Yeh ek complete **frontend development platform** hai jo aapko bade aur maintainable applications banane mein help karta hai.
 
-**Example (Two-way Data Binding):**
+> **Beginner Example:** Sochiye aap ek **Lego set** se ghar bana rahe hain. Angular aapko woh saare blocks (components) aur unhe jodne ka tareeka (framework) deta hai, taaki aap ek mazboot aur sundar ghar (website) bana sakein.
 
-```html
-<!-- app.component.html -->
-<input [(ngModel)]="userName" placeholder="Apna naam likhein">
-<p>Aapka naam hai: {{ userName }}</p>
-```
+### 2. TypeScript Kya Hai aur Angular isse kyon use karta hai? (What is TypeScript and why does Angular use it?)
 
-```typescript
-// app.component.ts
-import { Component } from '@angular/core';
+**Jawab (Answer):**
+**TypeScript** Microsoft dwara develop ki gayi ek **superset of JavaScript** hai. Iska matlab hai ki yeh JavaScript ke saare features ko support karta hai, aur usmein **Static Typing** jaisi extra features add karta hai. Angular isse isliye use karta hai kyunki static typing se code mein **errors compile-time** par hi pakde jaate hain, jisse bade projects mein code **zyada reliable** aur **maintainable** banta hai.
 
-@Component({ ... })
-export class AppComponent {
-  userName: string = 'Guest';
-}
-```
-Jaise hi aap input field mein kuch likhoge, `userName` variable aur `<p>` tag ka content turant update ho jayega.
+> **Beginner Example:**
+> *   **JavaScript:** `let age = 25; age = "pachis";` (Koi error nahi aayega, par baad mein problem ho sakti hai).
+> *   **TypeScript:** `let age: number = 25; age = "pachis";` (Yahan TypeScript turant error dega ki "age" sirf number ho sakta hai).
 
----
+### 3. Components Kya Hote Hain? (What are Components?)
 
-**3. TypeScript kya hai aur Angular ise kyon use karta hai?**
+**Jawab (Answer):**
+**Components** Angular application ke **building blocks** hote hain. Har component ka apna ek **view** (HTML template) aur **logic** (TypeScript class) hota hai. Yeh milkar UI ke ek chote, independent part ko represent karte hain.
 
-**Answer:** **TypeScript** JavaScript ka advanced version (superset) hai jo **static typing** provide karta hai. Iska matlab hai ki hum variables ka type (jaise `string`, `number`, `boolean`) define kar sakte hain.
+> **Beginner Example:** Ek website ko dekhiye. Uska **Header**, **Footer**, aur **Sidebar** alag-alag components ho sakte hain. Inhe alag-alag banakar hum ek poori website assemble karte hain.
 
-Angular ise isliye use karta hai taaki:
-1.  **Errors detect ho jayein:** Development ke waqt hi errors pakde ja sakein, run-time errors kam ho.
-2.  **Code maintain karna aasan rahe:** Bade projects mein code ko samajhna aur refactor karna aasan ho jata hai.
+### 4. Data Binding Kya Hai? (What is Data Binding?)
 
-**Example (TypeScript vs JavaScript):**
+**Jawab (Answer):**
+**Data Binding** woh mechanism hai jisse aap component ki **TypeScript data** aur uske **HTML view** ke beech connection establish karte hain. Isse data automatically sync rehta hai.
 
-| TypeScript | Plain JavaScript |
-| :--- | :--- |
-| `let age: number = 25;` | `let age = 25;` |
-| `function greet(name: string): string { ... }` | `function greet(name) { ... }` |
-
-TypeScript mein `age` hamesha `number` hi rahega, agar galti se aapne `age = "pachis"` likha toh compiler error de dega.
-
----
-
-**4. Angular Component kya hota hai?**
-
-**Answer:** Component Angular app ka **basic building block** hota hai. Har component screen ke ek chote hisse (jaise header, sidebar, button) ko control karta hai.
-
-Har component ke 3 main parts hote hain:
-1.  **HTML (template):** UI (User Interface) ke liye.
-2.  **CSS (style):** Look aur feel ke liye.
-3.  **TypeScript (logic):** Functionality aur data handling ke liye.
-
-**Example (Basic Component Structure):**
-
-```typescript
-// hello-world.component.ts
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-hello-world', // HTML tag jisse component use hoga
-  templateUrl: './hello-world.component.html', // Component ka HTML
-  styleUrls: ['./hello-world.component.css'] // Component ki CSS
-})
-export class HelloWorldComponent {
-  message = 'Namaste, Angular!';
-}
-```
-
-```html
-<!-- hello-world.component.html -->
-<div>
-  <h1>{{ message }}</h1>
-  <button>Click Me</button>
-</div>
-```
-
----
-
-**5. Angular Module kya hota hai?**
-
-**Answer:** Module related components, services, aur directives ko ek saath group karta hai. Yeh ek **container** ki tarah hai jo batata hai ki kaun-kaun se parts ek doosre ke saath kaam karenge.
-
-Har Angular app mein kam se kam ek **AppModule** (`app.module.ts`) hona zaroori hai, jise **Root Module** kehte hain.
-
-**Example (App Module):**
-
-```typescript
-// app.module.ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component'; // Naya component
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent // Humne naye component ko declare kiya
-  ],
-  imports: [
-    BrowserModule // Browser mein chalne ke liye zaroori module
-  ],
-  providers: [],
-  bootstrap: [AppComponent] // Root component jahan se app start hogi
-})
-export class AppModule { }
-```
-
----
-
-**6. Directives kya hote hain?**
-
-**Answer:** Directives HTML elements ko extra functionality dete hain. Yeh teen tarah ke hote hain:
-
-1.  **Component Directives:** Yeh sabse common hain, jo template ke saath aate hain (jaise `AppComponent`).
-2.  **Structural Directives:** Jo **DOM ka structure** badalte hain (elements ko add/remove karte hain).
-    *   *Example:* `*ngIf`, `*ngFor`.
-3.  **Attribute Directives:** Jo element ka **look ya behavior** badalte hain (DOM element ko modify karte hain).
-    *   *Example:* `ngClass`, `ngStyle`.
-
-**Example (Structural and Attribute Directives):**
-
-```html
-<!-- Structural Directive (*ngIf) -->
-<p *ngIf="isAdmin">Aap admin hain.</p>
-
-<!-- Attribute Directive (ngStyle) -->
-<button [ngStyle]="{ 'background-color': 'blue', 'color': 'white' }">
-  Styled Button
-</button>
-```
-
----
-
-**7. Data Binding kya hoti hai?**
-
-**Answer:** Yeh component (TypeScript) aur template (HTML) ke beech **communication ka tarika** hai. Iske 4 main types hain:
-
-| Type | Direction | Syntax | Use Case |
+| Type | Flow | Hinglish Explanation | Example |
 | :--- | :--- | :--- | :--- |
-| **Interpolation** | Component to View | `{{ value }}` | Text display karna |
-| **Property Binding** | Component to View | `[property]="value"` | HTML element ki property set karna |
-| **Event Binding** | View to Component | `(event)="handler()"` | User action (click, keyup) par function call karna |
-| **Two-way Binding** | Both ways | `[(ngModel)]="value"` | Forms mein data sync karna |
+| **One-Way Binding** | Component -> View | Data sirf component se view tak jaata hai. | `{{ data }}` (Interpolation), `[property]="data"` (Property Binding) |
+| **Two-Way Binding** | Component <-> View | Data dono taraf flow karta hai. | `[(ngModel)]="data"` |
 
-**Example (All 4 Types):**
+> **Beginner Example:**
+> *   **Interpolation:** `<h1>Hello {{ name }}</h1>` (Agar TS mein `name = 'Rahul'` hai, toh screen par 'Hello Rahul' dikhega).
+> *   **Two-Way Binding:** `<input [(ngModel)]="username">` (Jab aap input box mein kuch likhenge, toh TS ka `username` variable apne aap update ho jayega).
 
-```html
-<!-- app.component.html -->
-<!-- 1. Interpolation -->
-<p>Mera naam hai: {{ name }}</p>
+### 5. Directives Kitne Types Ki Hoti Hain? (What are the types of Directives?)
 
-<!-- 2. Property Binding -->
-<img [src]="imageUrl" alt="Profile Picture">
+**Jawab (Answer):**
+Directives woh classes hain jo DOM elements par apply hokar unka behavior ya appearance change karti hain. Teen main types hain:
 
-<!-- 3. Event Binding -->
-<button (click)="incrementCount()">Count Badhao</button>
+1.  **Component Directives:** Yeh sabse common hain, inka apna template hota hai.
+2.  **Structural Directives:** Yeh DOM structure ko change karte hain (elements ko add/remove karte hain). **Example:** `*ngIf`, `*ngFor`.
+3.  **Attribute Directives:** Yeh element ke appearance ya behavior ko change karte hain. **Example:** `[ngClass]`, `[ngStyle]`.
 
-<!-- 4. Two-way Binding -->
-<input [(ngModel)]="name">
-```
+> **Beginner Example:**
+> *   `*ngIf="isLoggedIn"`: Agar user logged in hai, tabhi button dikhao.
+> *   `*ngFor="let fruit of fruits"`: Fruits ki list ko screen par ek-ek karke dikhao.
+> *   `[ngStyle]="{'color': 'red'}"`: Text ka color red kar do.
 
----
+### 6. `NgModule` Kya Hai? (What is an NgModule?)
 
-**8. Dependency Injection (DI) kya hota hai?**
+**Jawab (Answer):**
+**`NgModule`** Angular application mein code ko organize karne ka tareeka hai. Yeh ek container hai jo related components, services, directives, aur pipes ko ek saath group karta hai. Har Angular app mein kam se kam ek **Root Module** (`AppModule`) zaroor hota hai.
 
-**Answer:** DI ek **design pattern** hai jisme Angular automatically required services ya dependencies component ko provide karta hai. Humein manually `new Service()` karke objects create nahi karne padte. Isse code loose-coupled aur testable banta hai.
+> **Beginner Example:** Sochiye ek **Toolbox** ki tarah. Ek toolbox mein sirf plumbing ke tools hain, doosre mein carpentry ke. `NgModule` bhi aise hi related features ko ek box mein pack karta hai.
 
-**Example (Injecting a Service):**
+### 7. Services aur Dependency Injection (DI) kya hain?
 
-```typescript
-// app.component.ts
-import { Component } from '@angular/core';
-import { UserService } from './user.service'; // Service import kiya
+**Jawab (Answer):**
+*   **Services:** Yeh woh classes hain jo **business logic** aur **data sharing** ke liye use hoti hain. Jaise ki, API calls karna ya data ko cache karna. Services ka koi view nahi hota.
+*   **Dependency Injection (DI):** Yeh ek design pattern hai jismein ek class (jaise ki component) apni dependencies (jaise ki service) ko khud create nahi karti, balki Angular framework use provide karta hai. Isse code **reusable** aur **testable** banta hai.
 
-@Component({ ... })
-export class AppComponent {
-  // Constructor mein service ko declare kiya, Angular khud hi iska object de dega
-  constructor(private userService: UserService) {
-    const users = this.userService.getUsers();
-    console.log(users);
-  }
-}
-```
+> **Beginner Example:** Sochiye aapko ek pizza chahiye. Aap khud pizza nahi banate (Service create nahi karte), balki delivery boy (Angular DI) se mangwa lete hain. Aapka kaam sirf pizza khana (Service use karna) hai.
 
----
+### 8. Routing ka kya kaam hai? (What is the purpose of Routing?)
 
-**9. Angular Services kya hoti hain?**
+**Jawab (Answer):**
+**Routing** Single Page Applications (SPAs) mein different views (pages) ko manage karta hai. Yeh user ko application ke alag-alag parts mein navigate karne deta hai, bina poore page ko reload kiye. Hum `RouterModule` aur `Routes` array ka use karke paths define karte hain.
 
-**Answer:** Services ka use **common logic** (jaise API calls, data sharing, logging) ko multiple components mein share karne ke liye hota hai. Yeh code reusability badhati hain aur components ko sirf UI logic tak seemit rakhti hain.
+> **Beginner Example:**
+> ```typescript
+> const routes: Routes = [
+>   { path: 'home', component: HomeComponent },
+>   { path: 'about', component: AboutComponent }
+> ];
+> ```
+> Jab user `/home` par jayega, toh `HomeComponent` dikhega.
 
-**Example (Basic Service):**
+### 9. Pipes kya hote hain? (What are Pipes?)
 
-```typescript
-// user.service.ts
-import { Injectable } from '@angular/core';
+**Jawab (Answer):**
+**Pipes** data ko **transform** karne ke liye use hote hain, jisse woh user ko display hone se pehle ek naye format mein aa jaaye. Jaise ki, date ko format karna, text ko uppercase karna, ya currency symbol add karna.
 
-@Injectable({
-  providedIn: 'root' // Isse service poori app mein available ho jaati hai
-})
-export class UserService {
-  private users = ['Alice', 'Bob', 'Charlie'];
+*   **Example:** `{{ dateValue | date:'shortDate' }}`
 
-  getUsers() {
-    return this.users;
-  }
+> **Beginner Example:**
+> *   `{{ 'hello' | uppercase }}` -> Output: **HELLO**
+> *   `{{ 100 | currency:'INR' }}` -> Output: **₹100.00**
 
-  addUser(name: string) {
-    this.users.push(name);
-  }
-}
-```
+### 10. Angular aur AngularJS mein kya farak hai? (Difference between Angular and AngularJS?)
 
----
+**Jawab (Answer):**
+**AngularJS** (version 1.x) aur **Angular** (version 2+) do alag frameworks hain.
 
-**10. Angular Routing kya hai?**
-
-**Answer:** Routing ke zariye hum app ke different views ya components ke beech **navigate** kar sakte hain bina poora page reload kiye. Yeh SPA (Single Page Application) ka ek important hissa hai.
-
-**Example (Route Configuration):**
-
-```typescript
-// app-routing.module.ts
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-
-const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' } // Default route
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-```
-
----
-
-**11. ngIf kya karta hai?**
-
-**Answer:** Yeh ek **structural directive** hai jo condition true hone par hi element ko **DOM mein add** karta hai, aur false hone par DOM se **remove** kar deta hai.
-
-**Example:**
-
-```typescript
-// app.component.ts
-isLoggedIn: boolean = true;
-```
-
-```html
-<!-- app.component.html -->
-<div *ngIf="isLoggedIn">
-  Swagat hai! Aap logged in hain.
-</div>
-<div *ngIf="!isLoggedIn">
-  Kripya login karein.
-</div>
-```
-
----
-
-**12. ngFor kya karta hai?**
-
-**Answer:** Yeh ek **structural directive** hai jo list ya array ko loop karke data display karne ke kaam aata hai. Har item ke liye template ko repeat karta hai.
-
-**Example:**
-
-```typescript
-// app.component.ts
-items = ['Apple', 'Banana', 'Cherry'];
-```
-
-```html
-<!-- app.component.html -->
-<ul>
-  <li *ngFor="let item of items; let i = index">
-    {{ i + 1 }}. Fruit: {{ item }}
-  </li>
-</ul>
-<!-- Output:
-1. Fruit: Apple
-2. Fruit: Banana
-3. Fruit: Cherry
--->
-```
-
----
-
-**13. Angular CLI kya hai?**
-
-**Answer:** **CLI (Command Line Interface)** ek tool hai jo Angular projects ko manage karne mein help karta hai.
-
-**Example (Common CLI Commands):**
-
-| Command | Description |
-| :--- | :--- |
-| `ng new my-app` | Naya project create karna |
-| `ng serve` | Project ko local server par run karna |
-| `ng generate component header` | Naya component banana (`ng g c header` bhi likh sakte hain) |
-| `ng build` | Production ke liye code compile karna |
-
----
-
-**14. ngModel kya hai?**
-
-**Answer:** Yeh forms mein **two-way data binding** ke liye use hota hai. Yeh `FormsModule` ka hissa hai. Input field mein jo likhoge, wo turant TypeScript variable mein update ho jayega, aur variable mein change karne par input field bhi update ho jayega.
-
-**Example:**
-
-```html
-<!-- app.component.html -->
-<input [(ngModel)]="userFeedback" placeholder="Apna feedback likhein">
-<p>Live Feedback: {{ userFeedback }}</p>
-```
-
----
-
-**15. Angular Pipe kya hota hai?**
-
-**Answer:** Pipes data ko **display karne se pehle transform** karte hain. Yeh data ko modify nahi karte, sirf uska presentation badalte hain.
-
-**Example:**
-
-```typescript
-// app.component.ts
-today = new Date();
-name = 'manus ai';
-```
-
-```html
-<!-- app.component.html -->
-<p>Date: {{ today | date:'fullDate' }}</p> <!-- Date ko format karega -->
-<p>Name: {{ name | uppercase }}</p> <!-- Text ko capital letters mein convert karega -->
-<p>Currency: {{ 1234.56 | currency:'INR' }}</p> <!-- Number ko currency format mein badlega -->
-```
-
----
-
-**16. Single Page Application (SPA) kya hai?**
-
-**Answer:** SPA aisi website hoti hai jo **sirf ek baar load** hoti hai. Jab aap kisi link par click karte ho, toh sirf zaroori content change hota hai, poora page reload nahi hota. Isse user experience fast aur smooth ho jaata hai.
-
----
-
-**17. Angular lifecycle hooks kya hote hain?**
-
-**Answer:** Jab koi component banta hai, update hota hai, ya delete hota hai, toh Angular kuch specific moments par functions run karta hai, jinhe **lifecycle hooks** kehte hain.
-
-**Example (Common Hooks):**
-
-| Hook | Jab Chalta Hai | Use Case |
+| Feature | AngularJS (v1.x) | Angular (v2+) |
 | :--- | :--- | :--- |
-| `ngOnInit` | Component initialize hone ke baad | Initial data fetch (API calls) |
-| `ngOnChanges` | Component ke `@Input` properties change hone par | Input changes par action lena |
-| `ngOnDestroy` | Component destroy hone se pehle | Subscriptions ko unsubscribe karna |
+| **Language** | JavaScript | TypeScript |
+| **Architecture** | MVC (Model-View-Controller) | Component-based |
+| **Mobile Support** | Limited | Excellent (Mobile-first) |
+| **Performance** | Slower (Two-way binding, dirty checking) | Faster (One-way binding, better Change Detection) |
 
 ---
 
-**18. ngOnInit() ka use kab karte hain?**
+## 🛠️ Part 2: Intermediate Concepts (Thode Mushkil Sawal)
 
-**Answer:** Yeh hook tab chalta hai jab component initialize ho jata hai. Iska use mostly **API calls** ya **initial data setup** karne ke liye kiya jata hai, kyunki is waqt component ki saari properties set ho chuki hoti hain.
+### 11. `ngOnInit` aur `constructor` mein kya difference hai?
 
-**Example:**
+**Jawab (Answer):**
+*   **`constructor`:** Yeh ek **TypeScript/JavaScript** feature hai. Iska use **Dependency Injection (DI)** ke liye hota hai. Jab component class ka object banta hai, tab yeh sabse pehle chalta hai.
+*   **`ngOnInit`:** Yeh ek **Angular Lifecycle Hook** hai. Yeh component ke **initialization** ke liye best place hai. Jab Angular component ko initialize kar deta hai aur uski saari **input properties** set ho jaati hain, tab yeh chalta hai. **API calls** aur complex initialization logic yahan likhna chahiye.
 
-```typescript
-// app.component.ts
-import { Component, OnInit } from '@angular/core';
+> **Beginner Example:**
+> ```typescript
+> constructor(private userService: UserService) { 
+>   // Sirf service inject karo
+> }
+> 
+> ngOnInit() {
+>   // Yahan API call karo
+>   this.userService.getUsers().subscribe(data => this.users = data);
+> }
+> ```
 
-@Component({ ... })
-export class AppComponent implements OnInit {
-  data: any;
+### 12. Observables aur Promises mein kya farak hai?
 
-  ngOnInit() {
-    // API call yahan karte hain
-    // this.http.get('/api/data').subscribe(res => this.data = res);
-    console.log('Component successfully initialize ho gaya hai.');
-  }
-}
-```
+**Jawab (Answer):**
+Dono hi **asynchronous operations** ko handle karte hain, par unmein bade differences hain:
 
----
-
-**19. Interpolation aur Property Binding mein kya fark hai?**
-
-**Answer:** Dono hi Component se View mein data bhejte hain, lekin unka use alag hai:
-
-*   **Interpolation (`{{ }}`):** Text display karne ke liye use hota hai. Yeh hamesha string value return karta hai.
-*   **Property Binding (`[ ]`):** HTML element ki **property** (jaise `src`, `disabled`, `class`) set karne ke liye use hota hai. Yeh boolean, number, ya object values bhi set kar sakta hai.
-
-**Example:**
-
-```typescript
-// app.component.ts
-isButtonDisabled = true;
-```
-
-```html
-<!-- app.component.html -->
-<!-- Interpolation: Text set karta hai -->
-<p>Button Status: {{ isButtonDisabled }}</p>
-
-<!-- Property Binding: HTML property set karta hai -->
-<button [disabled]="isButtonDisabled">Click Nahi Kar Sakte</button>
-```
-
----
-
-**20. Template-driven vs Reactive Forms?**
-
-**Answer:** Angular mein forms banane ke do tareeke hain:
-
-| Feature | Template-driven Forms | Reactive Forms |
+| Feature | Observable | Promise |
 | :--- | :--- | :--- |
-| **Complexity** | Simple forms ke liye | Complex forms ke liye |
-| **Logic** | Logic HTML template mein hota hai (`ngModel`) | Logic TypeScript file mein hota hai (`FormGroup`) |
-| **Scalability** | Kam scalable | Bahut scalable aur testable |
-| **Setup** | `FormsModule` import karna padta hai | `ReactiveFormsModule` import karna padta hai |
+| **Values** | **Multiple** values over time (Stream) | **Single** value (ya error) |
+| **Cancellation** | **Cancellable** (Subscription ko unsubscribe kar sakte hain) | **Non-cancellable** |
+| **Execution** | **Lazy** (Jab tak subscribe nahi karte, tab tak chalta nahi) | **Eager** (Jaise hi define kiya, turant execute hona shuru) |
 
-**Example (Reactive Form - TypeScript Logic):**
+> **Beginner Example:**
+> *   **Promise:** Ek baar pizza order kiya, ek baar delivery aayi. Khatam.
+> *   **Observable:** Ek YouTube channel subscribe kiya. Jab bhi naya video aayega, aapko notification milta rahega (Multiple values). Aap kabhi bhi unsubscribe kar sakte hain.
 
-```typescript
-// app.component.ts
-import { FormGroup, FormControl } from '@angular/forms';
+### 13. Lifecycle Hooks kya hote hain? (What are Lifecycle Hooks?)
 
-loginForm = new FormGroup({
-  username: new FormControl(''),
-  password: new FormControl('')
-});
-```
+**Jawab (Answer):**
+**Lifecycle Hooks** woh methods hain jinhe Angular component ya directive ki life cycle ke specific points par automatically call karta hai.
 
----
+*   **Main Hooks:** `ngOnChanges`, `ngOnInit`, `ngDoCheck`, `ngAfterContentInit`, `ngAfterContentChecked`, `ngAfterViewInit`, `ngAfterViewChecked`, aur `ngOnDestroy`.
 
-**21. Angular mein 'ViewChild' kya hai?**
+> **Beginner Example:** Sochiye ek insaan ki life: Paida hona (`ngOnInit`), bade hona (`ngOnChanges`), aur marna (`ngOnDestroy`). Angular bhi component ke saath yahi karta hai.
 
-**Answer:** `ViewChild` ek decorator hai jiska use kisi **child component** ya **DOM element** ko parent component ke TypeScript file mein access karne ke liye hota hai.
+### 14. Component mein data kaise share karte hain? (How to share data between components?)
 
-**Example:**
+**Jawab (Answer):**
+Data share karne ke kai tareeke hain:
 
-```html
-<!-- app.component.html -->
-<input #nameInput type="text">
-<button (click)="focusInput()">Focus Karo</button>
-```
+1.  **Parent to Child:** `@Input()` decorator ka use karke.
+2.  **Child to Parent:** `@Output()` decorator aur `EventEmitter` ka use karke.
+3.  **Unrelated Components:** **Services** ka use karke, jismein hum `BehaviorSubject` ya `Subject` (RxJS) ka use karte hain.
 
-```typescript
-// app.component.ts
-import { ViewChild, ElementRef } from '@angular/core';
+> **Beginner Example:**
+> *   **Parent to Child:** `<app-child [message]="parentMsg"></app-child>`
+> *   **Child to Parent:** `<app-child (notify)="onNotify($event)"></app-child>`
 
-@Component({ ... })
-export class AppComponent {
-  // 'nameInput' reference ko access kiya
-  @ViewChild('nameInput') inputElement: ElementRef;
+### 15. Decorators kya hote hain? (What are Decorators?)
 
-  focusInput() {
-    this.inputElement.nativeElement.focus(); // Input field par focus set kiya
-  }
-}
-```
+**Jawab (Answer):**
+**Decorators** woh functions hain jo classes, properties, methods, ya parameters par metadata attach karte hain. Yeh TypeScript ka feature hai. Angular inka use karke classes ko special meaning deta hai.
 
----
+*   **Examples:** `@Component`, `@NgModule`, `@Injectable`, `@Input`, `@Output`.
 
-**22. 'Input' aur 'Output' decorators kya hain?**
+> **Beginner Example:** Sochiye ek plain notebook hai. Agar aap us par "Diary" ka label laga dein, toh woh special ho gayi. Decorators bhi Angular classes ko "Component" ya "Service" ka label dete hain.
 
-**Answer:** Yeh decorators components ke beech data transfer karne ke liye use hote hain:
+### 16. AOT (Ahead-of-Time) aur JIT (Just-in-Time) compilation mein kya farak hai?
 
-*   **`@Input()`:** Parent component se Child component mein **data bhejne** ke liye.
-*   **`@Output()`:** Child component se Parent component ko **event bhejne** ke liye.
+**Jawab (Answer):**
+*   **JIT (Just-in-Time):** Compilation browser mein **runtime** par hota hai. Yeh development ke dauran use hota hai.
+*   **AOT (Ahead-of-Time):** Compilation **build process** ke dauran hota hai, browser mein load hone se pehle. Yeh production build ke liye use hota hai.
+    *   **Fayde:** Faster rendering, smaller application size, aur zyada security.
 
-**Example:**
+> **Beginner Example:**
+> *   **JIT:** Aap restaurant gaye aur wahan chef ne aapke saamne sabzi kaati aur banayi (Time zyada laga).
+> *   **AOT:** Aapne pehle se pack kiya hua khana liya jo bas garam karke khana hai (Turant taiyar).
 
-```typescript
-// child.component.ts
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+### 17. Template Reference Variable kya hai? (What is a Template Reference Variable?)
 
-@Component({ ... })
-export class ChildComponent {
-  @Input() parentData: string; // Parent se data receive hoga
+**Jawab (Answer):**
+Yeh ek tareeka hai jisse hum **HTML template** mein kisi DOM element ya component instance ko **reference** de sakte hain. Isse hum component class mein us element ya component ko access kar sakte hain.
 
-  @Output() dataEvent = new EventEmitter<string>(); // Parent ko event bhejega
+*   **Syntax:** `#myVariable` (e.g., `<input #myInput>`)
 
-  sendDataToParent() {
-    this.dataEvent.emit('Hello from Child!');
-  }
-}
-```
+> **Beginner Example:**
+> `<input #phone placeholder="phone number">`
+> `<button (click)="callPhone(phone.value)">Call</button>`
+> Yahan `#phone` ne input box ko ek naam de diya taaki hum uski value button click par le sakein.
 
----
+### 18. Pure Pipe aur Impure Pipe mein kya farak hai?
 
-**23. Observable aur Promise mein kya fark hai?**
+**Jawab (Answer):**
+*   **Pure Pipe:** Yeh pipe tabhi re-calculate hota hai jab uski **input value change** hoti hai (primitive value ya object reference change ho). Yeh zyada efficient hota hai.
+*   **Impure Pipe:** Yeh pipe har **change detection cycle** mein re-calculate hota hai, chahe input value change ho ya na ho. Yeh performance ko affect kar sakta hai, isliye kam use karna chahiye.
 
-**Answer:** Dono hi **asynchronous operations** handle karte hain, lekin unmein yeh main fark hain:
+### 19. RxJS kya hai aur iska kya role hai? (What is RxJS and its role?)
 
-| Feature | Promise | Observable |
-| :--- | :--- | :--- |
-| **Values** | Single value deta hai | Data ki **stream** handle karta hai, multiple values de sakta hai |
-| **Cancellation** | Cancel nahi kiya ja sakta | `unsubscribe()` karke cancel kiya ja sakta hai |
-| **Libraries** | Built-in JavaScript | RxJS library use karta hai |
-| **Laziness** | Eager (define karte hi chalu ho jata hai) | Lazy (jab tak `subscribe` nahi karte, chalu nahi hota) |
+**Jawab (Answer):**
+**RxJS** (Reactive Extensions for JavaScript) ek library hai jo **reactive programming** ke liye use hoti hai. Yeh **Observables** ka use karke asynchronous data streams ko handle karti hai. Angular mein yeh **HTTP requests**, **event handling**, aur **state management** mein bahut zaroori hai.
 
-**Example (Conceptual):**
+> **Beginner Example:** Sochiye ek **Conveyor Belt** hai jis par products aa rahe hain. RxJS woh tools hain jo un products ko filter karte hain, transform karte hain, ya combine karte hain jab tak woh end tak pahunche.
 
-```typescript
-// Observable: Multiple values over time
-const stream = new Observable(observer => {
-  observer.next(1);
-  setTimeout(() => observer.next(2), 1000);
-});
-stream.subscribe(val => console.log(val)); // Output: 1, then 2 after 1s
-```
+### 20. Interceptors ka kya use hai? (What is the use of Interceptors?)
+
+**Jawab (Answer):**
+**HTTP Interceptors** woh services hain jo outgoing **HTTP requests** ko aur incoming **HTTP responses** ko handle karte hain. Inka use common tasks ke liye hota hai, jaise ki:
+
+*   Har request mein **Authentication Token** add karna.
+*   Request/Response ko **log** karna.
+*   **Error handling** karna.
+
+> **Beginner Example:** Sochiye ek **Security Guard** jo har bahar jaane wali chitthi par stamp lagata hai aur har andar aane wali chitthi ko check karta hai. Interceptor bhi yahi kaam API calls ke liye karta hai.
 
 ---
 
-**24. HttpClient kya hai?**
+## 🧠 Part 3: Advanced Concepts (Gehre Sawal)
 
-**Answer:** `HttpClient` Angular ka built-in service hai jo **backend API se data fetch** karne ya bhejne ke liye use hota hai. Yeh **Observables** return karta hai.
+### 21. Change Detection aur `OnPush` strategy kya karti hai?
 
-**Example (Fetching Data):**
+**Jawab (Answer):**
+*   **Change Detection:** Yeh woh mechanism hai jisse Angular data model mein changes ko view (HTML) mein update karta hai.
+*   **`OnPush` Strategy:** Yeh ek optimization technique hai. Jab hum kisi component ki change detection strategy ko `OnPush` set karte hain, toh Angular us component ko sirf tabhi check karta hai jab:
+    1.  Uski **Input properties** ka **reference** change ho.
+    2.  Component ya uske children mein koi **event** fire ho.
+    *   *Isse application ki performance bahut improve hoti hai.*
 
-```typescript
-// app.component.ts
-import { HttpClient } from '@angular/common/http';
+### 22. Lazy Loading kya hai aur iska kya fayda hai?
 
-constructor(private http: HttpClient) { }
+**Jawab (Answer):**
+*   **Lazy Loading:** Yeh ek technique hai jismein application ke modules ko **on-demand** load kiya jaata hai. Jab user kisi particular route par jaata hai, tabhi us route se associated module load hota hai.
+*   **Fayda (Benefit):** Iska sabse bada fayda yeh hai ki **initial load time** kam ho jaata hai, jisse user experience (UX) behtar hota hai.
 
-fetchData() {
-  this.http.get('https://api.example.com/data')
-    .subscribe(data => {
-      console.log('API se data mila:', data);
-    });
-}
-```
+> **Beginner Example:** Agar aap ek badi book padh rahe hain, toh aap poori book ek saath nahi kholte. Aap sirf wahi page kholte hain jo aapko padhna hai. Lazy loading bhi yahi hai.
+
+### 23. State Management kyon zaroori hai? (Why is State Management necessary?)
+
+**Jawab (Answer):**
+Jab application bada ho jaata hai, toh data ko components ke beech pass karna mushkil ho jaata hai. **State Management** libraries (jaise ki **NgRx** ya **NgXs**) ek **single source of truth** provide karte hain. Saara data ek hi jagah (Store) par rehta hai, aur components ko jab bhi data chahiye hota hai, woh store se le lete hain. Isse data flow **clear**, **traceable**, aur **debug** karna aasan ho jaata hai.
+
+### 24. Angular application ki performance kaise optimize karte hain? (How to optimize Angular application performance?)
+
+**Jawab (Answer):**
+Performance optimize karne ke kai tareeke hain:
+
+1.  **Lazy Loading** ka use karna.
+2.  **`OnPush` Change Detection Strategy** ka use karna.
+3.  Production ke liye **AOT Compilation** use karna.
+4.  Bade lists ke liye **Virtual Scrolling** ka use karna.
+5.  Unnecessary subscriptions ko **unsubscribe** karna.
+
+### 25. RxJS operators `forkJoin`, `combineLatest`, aur `merge` mein kya farak hai?
+
+**Jawab (Answer):**
+Yeh teeno operators multiple Observables ko combine karte hain, par alag tareeke se:
+
+*   **`forkJoin`:** Yeh tabhi **single value** emit karta hai jab **saare** source Observables **complete** ho jaate hain. Yeh unki **last emitted value** ko combine karta hai. (Jaise `Promise.all`).
+*   **`combineLatest`:** Yeh tabhi value emit karta hai jab **saare** source Observables ne **kam se kam ek value** emit kar di ho. Uske baad, jab bhi koi ek Observable nayi value emit karta hai, toh yeh sabki **latest value** ko combine karke emit karta hai.
+*   **`merge`:** Yeh saare source Observables ki values ko **time ke hisaab se** combine karke ek single Observable mein emit karta hai.
+
+### 26. Custom Decorator kaise banate hain? (How to create a Custom Decorator?)
+
+**Jawab (Answer):**
+Custom Decorator banane ke liye hum ek **TypeScript function** likhte hain jo target, property key, aur property descriptor ko as argument leta hai. Yeh function phir class, method, property, ya parameter par extra functionality add karta hai.
+
+### 27. Server-Side Rendering (SSR) in Angular kya hai?
+
+**Jawab (Answer):**
+**SSR** (Server-Side Rendering) mein Angular application ko **server** par render kiya jaata hai, aur phir complete HTML ko browser par bheja jaata hai.
+
+*   **Fayde:** **Better SEO** (Search Engine Optimization) aur **Faster initial load time** (kyunki user ko blank screen nahi dikhti). Angular mein hum **Angular Universal** ka use karke SSR implement karte hain.
+
+### 28. Angular mein security ko kaise handle karte hain? (How to handle security in Angular?)
+
+**Jawab (Answer):**
+Angular mein security ke liye built-in mechanisms hain:
+
+1.  **XSS (Cross-Site Scripting) Protection:** Angular by default data ko **sanitize** karta hai. Agar aapko koi HTML ya URL bind karna hai, toh aapko `DomSanitizer` ka use karke use manually **bypass security** karna padega.
+2.  **CSRF (Cross-Site Request Forgery) Protection:** Hum `HttpClient` ka use karte hain, jo server se **CSRF token** ko read karke har request mein automatically add karta hai.
+3.  **Content Security Policy (CSP):** `index.html` mein CSP headers set karna.
+
+### 29. Unit Testing ke liye kaunse tools use hote hain? (Which tools are used for Unit Testing?)
+
+**Jawab (Answer):**
+Angular mein unit testing ke liye do main tools use hote hain:
+
+1.  **Jasmine:** Yeh ek **testing framework** hai jo tests likhne ke liye syntax provide karta hai (e.g., `describe`, `it`, `expect`).
+2.  **Karma:** Yeh ek **test runner** hai jo browser mein tests ko run karta hai aur results ko display karta hai.
+
+### 30. `NgZone` ka kya role hai? (What is the role of NgZone?)
+
+**Jawab (Answer):**
+**`NgZone`** (ya Zone.js) Angular ka woh part hai jo **asynchronous operations** (jaise ki `setTimeout`, `Promise resolution`, `HTTP requests`) ko track karta hai. Jab bhi koi asynchronous operation complete hoti hai, `NgZone` Angular ko notify karta hai ki **Change Detection** run karna hai.
+
+### 31. Difference between `ViewChild` and `ContentChild`?
+
+**Jawab (Answer):**
+Dono hi decorators hain jo child elements ko access karne ke liye use hote hain, par unka scope alag hai:
+
+*   **`@ViewChild`:** Yeh component ke **apne template** ke andar ke elements ya components ko access karta hai.
+*   **`@ContentChild`:** Yeh un elements ya components ko access karta hai jo **parent component** ne is component ke `<ng-content>` tag ke andar **project** kiye hain.
 
 ---
 
-**25. Bootstrapping kya hota hai?**
+## 📚 References (Sandarbh)
 
-**Answer:** Wo process jisse Angular app **start** hoti hai aur **main component** (usually `AppComponent`) load hota hai. Yeh process `main.ts` file se shuru hota hai, jo `AppModule` ko load karta hai.
+*   [Angular Official Documentation](https://angular.io/)
+*   [Top Angular Interview Questions](https://www.interviewbit.com/angular-interview-questions/)
+*   [Angular Interview Questions & Answers - GitHub](https://github.com/sudheerj/angular-interview-questions)
 
----
-
-**26. Transpilation kya hai?**
-
-**Answer:** TypeScript code ko **browser-friendly JavaScript** mein convert karna. Kyunki browsers sirf JavaScript samajhte hain, TypeScript code ko run karne se pehle Transpiler (jaise Babel ya TypeScript compiler) use karke JavaScript mein badla jata hai.
-
----
-
-**27. Angular Universal kya hai?**
-
-**Answer:** Angular apps ko **server-side render (SSR)** karne ke liye tool. Isse app ka pehla view server par hi render ho jata hai aur phir browser ko bheja jata hai. Isse **SEO (Search Engine Optimization)** aur initial load time behtar hota hai.
-
----
-
-**28. 'AOT' vs 'JIT' compilation?**
-
-**Answer:**
-
-*   **JIT (Just-in-Time):** Compilation **browser mein run-time** par hota hai. Development ke dauran use hota hai.
-*   **AOT (Ahead-of-Time):** Compilation **build ke waqt pehle hi** ho jata hai. Production build ke liye use hota hai. AOT se app fast load hoti hai aur size chota ho jata hai.
-
----
-
-**29. Interpolation ka syntax kya hai?**
-
-**Answer:** Double Curly Braces: `{{ variable_name }}`.
-
-**Example:**
-```html
-<p>Current Year: {{ 2025 }}</p>
-```
-
----
-
-**30. Angular mein Interface ka kya role hai?**
-
-**Answer:** Interface ka use **data ka structure ya shape define** karne ke liye hota hai, taaki **type safety** bani rahe. Yeh sirf development ke waqt help karta hai aur compilation ke baad JavaScript code mein gayab ho jata hai.
-
-**Example:**
-
-```typescript
-// user.interface.ts
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  isActive: boolean;
-}
-
-// app.component.ts
-let currentUser: User = {
-  id: 1,
-  name: 'Manus',
-  email: 'manus@ai.com',
-  isActive: true
-};
-// Agar aap 'id' ko string dene ki koshish karoge, toh TypeScript error de dega.
-```
+**All the best for your interview! 👍**
